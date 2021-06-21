@@ -12,7 +12,7 @@ generate-deb:
 	rm -f package/usr/local/bin/vmguest-prometheus-exporter.py
 
 upload-deb:
-	gsutil cp dist/*.deb gs://opscenter-isos/deb
+	gsutil -m cp dist/*.deb gs://opscenter-isos/deb
 
 build-deb: build-container generate-deb upload-deb
 
