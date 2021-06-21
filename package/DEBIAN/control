@@ -1,5 +1,5 @@
 Package: vmguest-prom-exporter
-Version: 0.0.1
+Version: 0.0.2
 Priority:
 Architecture: all
 Essential:
