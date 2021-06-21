@@ -1,9 +1,10 @@
 export PATH := $(PATH)
-export VERSION=$(shell grep 'Version:' package/DEBIAN/control|awk '{print $$2}')
+
 build-container:
 	docker build --network=host -t vmguestexporter:builder .
 
 generate-deb:
+	export VERSION=$(shell grep 'Version:' package/DEBIAN/control|awk '{print $$2}')
 	cp vmguest-prometheus-exporter.py package/usr/local/bin
 	chmod +x package/usr/local/bin/vmguest-prometheus-exporter.py
 	rm -f package/usr/local/bin/empty
@@ -14,4 +15,20 @@ generate-deb:
 upload-deb:
 	gsutil cp dist/*.deb gs://opscenter-isos/deb
 
-build: build-container generate-deb upload-deb
+build-deb: build-container generate-deb upload-deb
+
+build-patch:
+	bumpversion patch
+
+build-minor:
+	bumpversion minor
+
+build-major:
+	bumpversion major
+
+git-push:
+	git push --tags origin
+
+patch: build-patch build-deb git-push
+minor: build-minor build-deb git-push
+major: build-major build-deb git-push
