@@ -1,0 +1,3 @@
+pkg-resources==0.0.0
+prometheus-client==0.11.0
+python-vmguestlib==0.2.0
