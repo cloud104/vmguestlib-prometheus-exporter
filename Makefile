@@ -6,9 +6,9 @@ build-container:
 generate-deb:
 	cp vmguest-prometheus-exporter.py package/usr/local/bin
 	chmod +x package/usr/local/bin/vmguest-prometheus-exporter.py
-	rm -f package/usr/local/bin/remove.me
+	rm -f package/usr/local/bin/empty
 	docker run -it --net host -e VERSION=${VERSION} --user $(shell id -u) -v $(shell pwd):/app vmguestexporter:builder
-	touch package/usr/local/bin/remove.me
+	touch package/usr/local/bin/empty
 	rm -f package/usr/local/bin/vmguest-prometheus-exporter.py
 
 upload-deb:
