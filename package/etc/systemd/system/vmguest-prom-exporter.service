@@ -7,7 +7,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=root
-ExecStart=/usr/local/bin/teste.py
+ExecStart=/usr/local/bin/vmguest-prometheus-exporter.py
 
 [Install]
 WantedBy=multi-user.target

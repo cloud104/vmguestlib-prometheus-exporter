@@ -1,0 +1,14 @@
+Package: vmguest-prom-exporter
+Version: 0.0.1
+Priority:
+Architecture: all
+Essential:
+Depends:
+Pre-depends:
+Suggests:
+Installed-Size:
+Maintainer: TKS
+Conflicts:
+Replaces:
+Provides:
+Description: Tool to provide metrics from vmware
