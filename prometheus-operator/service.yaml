@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: vmware-exporter
+    jobLabel: vmware-exporter
+  name: prometheus-vmware-exporter
+  namespace: tks-system
+spec:
+  ports:
+  - name: metrics
+    port: 9242
+    protocol: TCP
+    targetPort: 9242
+  selector:
+    app: prometheus-node-exporter
+    release: kube-prometheus-stack
+  sessionAffinity: None
+  type: ClusterIP

@@ -1,17 +1,37 @@
 export PATH := $(PATH)
-export VERSION=$(shell grep 'Version:' package/DEBIAN/control|awk '{print $$2}')
+
 build-container:
 	docker build --network=host -t vmguestexporter:builder .
 
 generate-deb:
+	mkdir dist
 	cp vmguest-prometheus-exporter.py package/usr/local/bin
 	chmod +x package/usr/local/bin/vmguest-prometheus-exporter.py
-	rm -f package/usr/local/bin/remove.me
-	docker run -it --net host -e VERSION=${VERSION} --user $(shell id -u) -v $(shell pwd):/app vmguestexporter:builder
-	touch package/usr/local/bin/remove.me
+	rm -f package/usr/local/bin/empty
+	docker run -it --net host -e VERSION=$(shell grep 'Version:' package/DEBIAN/control|awk '{print $$2}') --user $(shell id -u) -v $(shell pwd):/app vmguestexporter:builder
+	touch package/usr/local/bin/empty
 	rm -f package/usr/local/bin/vmguest-prometheus-exporter.py
 
 upload-deb:
-	gsutil cp dist/*.deb gs://opscenter-isos/deb
+	gsutil -m cp dist/*.deb gs://opscenter-isos/deb
 
-build: build-container generate-deb upload-deb
+build-deb: build-container generate-deb upload-deb
+
+build-patch:
+	bumpversion patch
+
+build-minor:
+	bumpversion minor
+
+build-major:
+	bumpversion major
+
+git-push:
+	git push --tags origin
+
+cleanup:
+	rm -rf dist
+
+patch: build-patch build-deb git-push
+minor: build-minor build-deb git-push
+major: build-major build-deb git-push

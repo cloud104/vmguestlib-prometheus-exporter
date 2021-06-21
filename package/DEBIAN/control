@@ -1,9 +1,9 @@
 Package: vmguest-prom-exporter
-Version: 0.0.1
+Version: 0.0.10
 Priority:
 Architecture: all
 Essential:
-Depends:
+Depends: python3-prometheus-client
 Pre-depends:
 Suggests:
 Installed-Size:

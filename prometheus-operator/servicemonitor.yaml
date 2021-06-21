@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: vmware-exporter
+  name: prometheus-tks-vmware-exporter
+  namespace: tks-system
+spec:
+  endpoints:
+  - port: metrics
+  jobLabel: jobLabel
+  selector:
+    matchLabels:
+      app: vmware-exporter

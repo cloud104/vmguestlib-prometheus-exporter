@@ -1,4 +1,4 @@
-#!/bin/env python3
+#!/usr/bin/env python3
 
 import argparse
 import sys
@@ -130,7 +130,7 @@ if __name__ == '__main__':
     while True:
         try:
             populate_data()
-            time.sleep(ARGS.frequency)
+            time.sleep(ARGS.f__frequency)
         except BaseException as e:
             print("Error: {}".format(e))
             sys.exit(1)
