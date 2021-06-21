@@ -3,7 +3,7 @@ Version: 0.0.9
 Priority:
 Architecture: all
 Essential:
-Depends:
+Depends: python3-prometheus-client
 Pre-depends:
 Suggests:
 Installed-Size:
