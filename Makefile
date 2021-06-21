@@ -4,11 +4,10 @@ build-container:
 	docker build --network=host -t vmguestexporter:builder .
 
 generate-deb:
-	VERSION:=$(shell grep 'Version:' package/DEBIAN/control|awk '{print $$2}')
 	cp vmguest-prometheus-exporter.py package/usr/local/bin
 	chmod +x package/usr/local/bin/vmguest-prometheus-exporter.py
 	rm -f package/usr/local/bin/empty
-	docker run -it --net host -e VERSION=${VERSION} --user $(shell id -u) -v $(shell pwd):/app vmguestexporter:builder
+	docker run -it --net host -e VERSION=$(shell grep 'Version:' package/DEBIAN/control|awk '{print $$2}') --user $(shell id -u) -v $(shell pwd):/app vmguestexporter:builder
 	touch package/usr/local/bin/empty
 	rm -f package/usr/local/bin/vmguest-prometheus-exporter.py
 
