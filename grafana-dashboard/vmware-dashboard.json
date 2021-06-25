@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1624474692611,
+  "id": 3,
+  "iteration": 1624628797784,
   "links": [],
   "panels": [
     {
@@ -1137,48 +1137,12 @@
         "label": "Host: ",
         "multi": false,
         "name": "node",
-        "options": [
-          {
-            "selected": false,
-            "text": "10.0.1.2:9242",
-            "value": "10.0.1.2:9242"
-          },
-          {
-            "selected": false,
-            "text": "10.0.1.3:9242",
-            "value": "10.0.1.3:9242"
-          },
-          {
-            "selected": false,
-            "text": "10.0.1.4:9242",
-            "value": "10.0.1.4:9242"
-          },
-          {
-            "selected": false,
-            "text": "10.0.1.5:9242",
-            "value": "10.0.1.5:9242"
-          },
-          {
-            "selected": false,
-            "text": "10.0.1.6:9242",
-            "value": "10.0.1.6:9242"
-          },
-          {
-            "selected": true,
-            "text": "10.0.1.7:9242",
-            "value": "10.0.1.7:9242"
-          },
-          {
-            "selected": false,
-            "text": "10.0.1.8:9242",
-            "value": "10.0.1.8:9242"
-          }
-        ],
+        "options": [],
         "query": {
           "query": "label_values(vmware_host_processor_speed{job=\"vmware-exporter\"}, instance)",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 0,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -1198,5 +1162,5 @@
   "timezone": "",
   "title": "VMWare",
   "uid": "y0hamCgnk",
-  "version": 22
+  "version": 1
 }
